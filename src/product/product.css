@@ -1,0 +1,33 @@
+
+/* List Products */
+.products-container{
+    display: block;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.products-content{
+    float: left;
+    background: rgb(56, 58, 60);
+    width: 30%;
+    padding: 10px;
+    margin-left: 10px;
+    color: lightblue;
+    line-height: 1.4;
+}
+
+
+/* OK and Back button */
+.okBack-btn{
+    float: right;
+    width:20%;
+    height:30px;
+    background: darkcyan;
+}
+
+
+/* Img Container */
+img{
+    float: right;
+    margin-top: 80px;
+}
