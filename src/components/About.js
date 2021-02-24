@@ -16,7 +16,7 @@ const About = () => (
 				<li><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53819/6.png" /></li>
 			</ul>
 		</div>
-		<p class="attribution">Images featured in this demo are the works of <a href="https://d.hatena.ne.jp/koochinko">Mernan Behairi</a>. Inspired by an old post of <a href="https://twitter.com/SohTanaka">@Sohtanaka</a>. Design Shopping Web by <a href="https://github.com/phatnguyen1006">Phat Nguyen</a>.</p>
+		<p class="attribution">Images featured in this demo are the works of <a href="https://d.hatena.ne.jp/koochinko">Mernan Behairi</a>. Inspired by an old post of <a href="https://twitter.com/SohTanaka">@Sohtanaka</a>. Design Shopping Web by <a target="_blank" href="https://github.com/phatnguyen1006">Phat Nguyen</a>.</p>
 	</div>
 )
 

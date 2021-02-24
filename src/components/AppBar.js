@@ -12,6 +12,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link } from 'react-router-dom';
+// firebase:
+import firebase from "firebase";
 import '../../src/index.css';
 
 // Back Button
@@ -31,10 +33,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function MenuAppBar() {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -56,8 +57,8 @@ export default function MenuAppBar() {
   // style:
   let style;
   if (barState.color) { style = { background: "#663399" } }
-  console.log(style);
-  console.log(barState);
+  // console.log(style);
+  // console.log(barState);
 
   return (
     <div className={classes.root}>
@@ -110,7 +111,9 @@ export default function MenuAppBar() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link to="/signin">SignIn</Link>
+                </MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>

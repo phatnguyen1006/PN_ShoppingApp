@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState,useEffect } from 'react';
 
 import Typography from '@material-ui/core/Typography';
 import TodoForm from '../todolist/TodoForm';
@@ -7,15 +8,12 @@ import useTodoState from '../todolist/useTodoState';
 
 import '../todolist/todolist.css';
 
+export default function TodoListWeb({todos,addTodo,deleteTodo}){
 
-export default function TodoListWeb(){
-  
-  // Set to not re Assign todos:
-  const { todos, addTodo, deleteTodo } = useTodoState([]); // destructering
-  const [isDisabled, setIsDisabled] = useState(false); // Set Begin Value
+  // const [isDisabled, setIsDisabled] = useState(false); // Set Begin Value
   
   // Tao State cho isColor 
-  const [isColor, setIsColor] = useState(true)
+  // const [isColor, setIsColor] = useState(true)
 
 
   return (

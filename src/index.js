@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 // RouterDOM
 import {
@@ -10,25 +10,64 @@ import './index.css';
 import MenuAppBar from './components/AppBar';
 import App from './App';
 import TodoListWeb from './components/TodoListWeb';
-import Products from './components/Products'
-import About from './components/About'
+import Products from './components/Products';
+import About from './components/About';
+import SignIn from './features/Auth/SignIn';
 
 import BarThemeProvider from './context/BarTheme';
+// Move useTodoState to set todos is a global var.
+import useTodoState from '../src/todolist/useTodoState';
+// Firebase
+import firebase from 'firebase';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Router>
+// Configure Firebase.
+const config = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+};
+firebase.initializeApp(config);
+
+const Index = () => {
+  
+  // Set INITIAL VALUE for TodoList:
+  const { todos, addTodo, deleteTodo } = useTodoState([]);
+
+  useEffect( () => {
+    const unregisterAuthObserver = firebase.auth().onAuthStateChanged( user => {
+      if (!user) {
+        console.log("Anonymous!!!");
+        return;
+      }
+
+      console.log("User: ", user.didplayName);
+    })
+
+    return () => unregisterAuthObserver();
+  },[]);
+
+  return (
+  <Router>
     <BarThemeProvider>
       <MenuAppBar />
     </BarThemeProvider>
     <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/about" component={About} />
-        <Route path="/todolist" component={TodoListWeb} />
-        <Route path="/products" component={Products} />
-        <Route path="/admin" component={() => <h1>Welcome to Admin</h1>} />
-      </Switch>
-    </Router>
+      <Route exact path="/" component={App} />
+      <Route path="/about" component={About} />
+      <Route path="/todolist">
+        <TodoListWeb todos={todos} addTodo={addTodo} deleteTodo={deleteTodo}/>
+      </Route>
+      <Route path="/products" component={Products} />
+      <Route path="/admin" component={() => <h1>Welcome to Admin</h1>} />
+      <Route path="/signin" component={SignIn} />
+      <Route component={() => <h1>Not Found Pages</h1>} />
+    </Switch>   
+  </Router>
+  );
+}
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Index/>
   </React.StrictMode>,
   document.getElementById('root')
 );
