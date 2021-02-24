@@ -1,12 +1,10 @@
-import React from 'react'
+import React from "react";
 // AppBar
 
 import "./index.css";
 
 function App() {
-  return (
-    <h1>Home</h1>
-  );
+  return <h1>Home</h1>;
 }
 
 export default App;
