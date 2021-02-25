@@ -3,13 +3,16 @@ import React from 'react';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
+import '../../index.css';
+
 // configure FirebaseUI
 const uiConfig = {
   signInFlow: 'redirect',
   // We will display Google as auth providers.
   signInSuccessUrl: '/',
   signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
   ],
   // callbacks: {
   //   // Avoid redirects after sign-in.
@@ -19,10 +22,12 @@ const uiConfig = {
 
 const SignIn = () => {
   return (
-    <div style={{textAlign:"center",background:"green"}}>
+    <div className="group-firebase-button">
       <h1>SignIn Google</h1>
       <p>One Touch, Million Connect</p>
+      <div>
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+      </div>
     </div>
   );
 };

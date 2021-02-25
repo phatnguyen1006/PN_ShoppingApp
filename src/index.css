@@ -35,3 +35,20 @@
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* firebaseUI */
+.firebaseui-idp-list {
+  width: 100%;
+}
+
+/* firebaseUI Group Button */
+.group-firebase-button {
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 35%;
+  margin-right: 35%;
+  text-align: center;
+  width: 30%;
+  background-color: darkcyan;
+  box-shadow: 5px 10px rgb(82, 82, 82);
+}
