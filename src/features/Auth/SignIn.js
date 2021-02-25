@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Redirect, useLocation } from 'react-router-dom';
 // Import Firebase & FirebaseUI
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+
+// Redirect To Reference:
+import { ReferenceContext } from '../../context/ReferenceContext';
 
 import '../../index.css';
 
@@ -21,6 +25,18 @@ const uiConfig = {
 };
 
 const SignIn = () => {
+
+  const { state } = useLocation();
+  const from = state || { from: { pathname: "/" } };
+  const { redirect, setRedirect } = useContext(ReferenceContext);
+  console.log("Redirect: ", redirect);
+  
+  if (redirect) {
+    <Redirect to={from} />
+  }
+
+
+  // Main return SignIn page => OutSide to easier.
   return (
     <div className="group-firebase-button">
       <h1>SignIn Google</h1>
@@ -31,5 +47,13 @@ const SignIn = () => {
     </div>
   );
 };
+
+export const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(callback) {
+    this.isAuthenticated = true;
+    setTimeout(callback(), 100);
+  }
+}
 
 export default SignIn;

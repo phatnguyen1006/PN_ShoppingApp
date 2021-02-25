@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState,useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 // RouterDOM
 import {
@@ -13,8 +13,16 @@ import TodoListWeb from './components/TodoListWeb';
 import Products from './components/Products';
 import About from './components/About';
 import SignIn from './features/Auth/SignIn';
+import Admin from './components/Admin';
+// Private Route:
+import PrivateRoute from './private/PrivateRoute';
 
 import BarThemeProvider from './context/BarTheme';
+// Redirect Context:
+import ReferenceContextProvider from './context/ReferenceContext';
+import { ReferenceContext } from './context/ReferenceContext';
+// fakeAuth to check Firebase:
+import { fakeAuth } from './features/Auth/SignIn';
 // Move useTodoState to set todos is a global var.
 import useTodoState from '../src/todolist/useTodoState';
 // Firebase
@@ -32,6 +40,11 @@ const Index = () => {
   // Set INITIAL VALUE for TodoList:
   const { todos, addTodo, deleteTodo } = useTodoState([]);
 
+  // PrivateRoute:
+  // Set Redirect to Render PrivateRoute:
+  const { redirect, setRedirect } = useContext(ReferenceContext);
+
+  
   useEffect( () => {
     const unregisterAuthObserver = firebase.auth().onAuthStateChanged( user => {
       if (!user) {
@@ -39,6 +52,7 @@ const Index = () => {
         return;
       }
 
+      fakeAuth.authenticate(() => setRedirect(true)); // Set Auth = true => Allow to Redirect;
       console.log("User: ", user.didplayName);
     })
 
@@ -46,7 +60,7 @@ const Index = () => {
   },[]);
 
   return (
-  <Router>
+    <Router>
     <BarThemeProvider>
       <MenuAppBar />
     </BarThemeProvider>
@@ -57,17 +71,21 @@ const Index = () => {
         <TodoListWeb todos={todos} addTodo={addTodo} deleteTodo={deleteTodo}/>
       </Route>
       <Route path="/products" component={Products} />
-      <Route path="/admin" component={() => <h1>Welcome to Admin</h1>} />
+      
+      <PrivateRoute path="/admin" component={Admin} />
+
       <Route path="/signin" component={SignIn} />
       <Route component={() => <h1>Not Found Pages</h1>} />
-    </Switch>   
+      </Switch>
   </Router>
   );
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <Index/>
+    <ReferenceContextProvider>
+      <Index />
+    </ReferenceContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

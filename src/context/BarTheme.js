@@ -35,7 +35,6 @@ const BarThemeProvider = ({children}) => {
 
     // INITIAL Reducer:
     const [barState, dispatch] = useReducer(barReducer, INIT_VALUE);
-    
 
     // Return Provider
     return (

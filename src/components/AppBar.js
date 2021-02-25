@@ -56,7 +56,7 @@ export default function MenuAppBar() {
   const { barState, changeBar } = useContext(BarTheme);
   // style:
   let style;
-  if (barState.color) { style = { background: "#663399" } }
+  if (!barState.color) { style = { background: "#663399" } }
   // console.log(style);
   // console.log(barState);
 
@@ -112,7 +112,9 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <Link to="/signin">SignIn</Link>
+                  <Link style={{
+                    textDecoration: "none"
+                  }} to="/signin">SignIn</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
