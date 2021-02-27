@@ -1,6 +1,4 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Application Structure:
 ```srcipt
@@ -12,6 +10,7 @@ src
 |  |_ Admin.js
 |  |_ TodoListWeb.js
 |  |_ Products.js
+|
 |
 |_ features
 |  |_ Auth/SignIn.js
@@ -50,6 +49,9 @@ src
 by PhatNguyen
 ```
 
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
