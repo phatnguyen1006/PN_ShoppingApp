@@ -1,3 +1,54 @@
+
+
+# Application Structure:
+```srcipt
+src
+|
+|_ components
+|  |_ AppBar.js
+|  |_ About.js
+|  |_ Admin.js
+|  |_ TodoListWeb.js
+|  |_ Products.js
+|
+|
+|_ features
+|  |_ Auth/SignIn.js
+|  |_ Auth/SignOut.js // SignOut features
+|
+|_ buttons
+|  |_ backButton.js
+|  
+|
+|_ private /* Lock */
+|
+|_ context
+|  |_ BarTheme.js
+|  |_ ReferenceContext.js // Redirect in <PrivateRoute/>
+|
+|
+|_ about
+|  |_ about.css
+|
+|_ product
+|  |_ Product.js // contain APIs about products.
+|  |_ product.css
+|
+|_ todolist
+|  |_ TodoForm.js
+|  |_ TodoList.js
+|  |_ useInputState.js
+|  |_ useTodoState.js
+|  |_ todolist.css
+|
+|*App.js
+|*index.js
+|*index.css
+.env // enviroment.
+
+by PhatNguyen
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +119,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
