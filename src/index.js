@@ -1,4 +1,4 @@
-import React, { useState,useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 // RouterDOM
 import {
@@ -36,6 +36,9 @@ const config = {
 firebase.initializeApp(config);
 
 const Index = () => {
+
+  // Switch
+  // const [auth, setAuth] = React.useState(false);
   
   // Set INITIAL VALUE for TodoList:
   const { todos, addTodo, deleteTodo } = useTodoState([]);
@@ -53,7 +56,7 @@ const Index = () => {
       }
 
       fakeAuth.authenticate(() => setRedirect(true)); // Set Auth = true => Allow to Redirect;
-      console.log("User: ", user.didplayName);
+      console.log("User: ", user.displayName);
     })
 
     return () => unregisterAuthObserver();
@@ -62,7 +65,7 @@ const Index = () => {
   return (
     <Router>
     <BarThemeProvider>
-      <MenuAppBar />
+      <MenuAppBar/>
     </BarThemeProvider>
     <Switch>
       <Route exact path="/" component={App} />

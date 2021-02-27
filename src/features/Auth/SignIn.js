@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect, useLocation } from 'react-router-dom';
 // Import Firebase & FirebaseUI
 import firebase from 'firebase';
@@ -29,12 +29,19 @@ const SignIn = () => {
   const { state } = useLocation();
   const from = state || { from: { pathname: "/" } };
   const { redirect, setRedirect } = useContext(ReferenceContext);
-  console.log("Redirect: ", redirect);
+  // console.log("Redirect: ", redirect);
   
   if (redirect) {
     <Redirect to={from} />
   }
 
+  useEffect(() => {
+    if (from.from.pathname == "/admin") {
+      window.alert("You must to login first");
+    }
+    // console.log("from:  ", from.from.pathname );
+  }, []);
+  
 
   // Main return SignIn page => OutSide to easier.
   return (
@@ -52,7 +59,7 @@ export const fakeAuth = {
   isAuthenticated: false,
   authenticate(callback) {
     this.isAuthenticated = true;
-    setTimeout(callback(), 100);
+    setTimeout(callback(), 100); // Wait 0s to not delay.
   }
 }
 

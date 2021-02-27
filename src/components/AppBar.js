@@ -12,8 +12,10 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link } from 'react-router-dom';
-// firebase:
-import firebase from "firebase";
+// firebase SignOUt:
+import SignOut from '../features/Auth/SignOut';
+// fakeAuth:
+import { fakeAuth } from '../features/Auth/SignIn';
 import '../../src/index.css';
 
 // Back Button
@@ -52,6 +54,8 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   };
 
+  // FakeAuth:
+
   // change-theme
   const { barState, changeBar } = useContext(BarTheme);
   // style:
@@ -66,7 +70,7 @@ export default function MenuAppBar() {
       <FormGroup>
         <FormControlLabel
           control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
+          label={auth ? 'LightMode' : 'DarkMode'}
         />
       </FormGroup>
       <AppBar style={style} position="static">
@@ -79,13 +83,13 @@ export default function MenuAppBar() {
                   <Link to="/about">About</Link>
                   <Link to="/todolist">TodoList</Link>
                   <Link to="/products">Products</Link>
-                  {auth && (<Link to="/admin">Admin</Link>)}
+                  {fakeAuth.isAuthenticated && (<Link to="/admin">Admin</Link>)}
                 </div>
         </div>
           <Typography variant="h6" className={classes.title}>
             NTP
           </Typography>
-          {auth && (
+          {fakeAuth.isAuthenticated ? (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -113,13 +117,29 @@ export default function MenuAppBar() {
               >
                 <MenuItem onClick={handleClose}>
                   <Link style={{
-                    textDecoration: "none"
+                    textDecoration: "none",
+                    color: "green"
                   }} to="/signin">SignIn</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem
+                  style={{
+                    color: "red"
+                  }} onClick={() => {
+                    SignOut()
+                    setAnchorEl(null)
+                  }}>
+                    Logout
+                </MenuItem>
               </Menu>
-            </div>
-          )}
+            </div>) : (
+              <Link to="/signin"
+                style={{
+                  textDecoration: "none",
+                  color: "red"
+                }}
+              >SignIn</Link>
+            )}
         </Toolbar>
       </AppBar>
     </div>
