@@ -14,7 +14,7 @@ src
 |
 |_ features
 |  |_ Auth/SignIn.js
-|  |_ SignOut.js // SignOut features
+|  |_ Auth/SignOut.js // SignOut features
 |
 |_ buttons
 |  |_ backButton.js
