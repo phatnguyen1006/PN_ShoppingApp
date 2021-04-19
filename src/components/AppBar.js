@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuAppBar() {
+export default function MenuAppBar({ displayName }) {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -119,7 +119,7 @@ export default function MenuAppBar() {
                   <Link style={{
                     textDecoration: "none",
                     color: "green"
-                  }} to="/signin">SignIn</Link>
+                  }} to="/signin">{displayName}</Link>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem

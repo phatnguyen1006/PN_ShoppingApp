@@ -1,0 +1,9 @@
+# modules
+node_modules
+
+# git
+.git
+.gitignore
+
+# eslint
+.eslintcache

@@ -51,6 +51,7 @@ const SignIn = () => {
       <div>
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
       </div>
+      <p>/* Login to use Admin Page */</p>
     </div>
   );
 };

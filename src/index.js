@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 // RouterDOM
 import {
@@ -16,6 +16,8 @@ import SignIn from './features/Auth/SignIn';
 import Admin from './components/Admin';
 // Private Route:
 import PrivateRoute from './private/PrivateRoute';
+// Theme
+import ThemeProvider from './context/Theme'
 
 import BarThemeProvider from './context/BarTheme';
 // Redirect Context:
@@ -46,6 +48,8 @@ const Index = () => {
   // PrivateRoute:
   // Set Redirect to Render PrivateRoute:
   const { redirect, setRedirect } = useContext(ReferenceContext);
+  // User Name
+  const [displayName, setDisplayName] = useState("");
 
   
   useEffect( () => {
@@ -56,7 +60,8 @@ const Index = () => {
       }
 
       fakeAuth.authenticate(() => setRedirect(true)); // Set Auth = true => Allow to Redirect;
-      console.log("User: ", user.displayName);
+      console.log("User: ", typeof(user.displayName));
+      setDisplayName(user.displayName);
     })
 
     return () => unregisterAuthObserver();
@@ -65,7 +70,7 @@ const Index = () => {
   return (
     <Router>
     <BarThemeProvider>
-      <MenuAppBar/>
+        <MenuAppBar displayName={ displayName } />
     </BarThemeProvider>
     <Switch>
       <Route exact path="/" component={App} />
@@ -79,16 +84,18 @@ const Index = () => {
 
       <Route path="/signin" component={SignIn} />
       <Route component={() => <h1>Not Found Pages</h1>} />
-      </Switch>
+    </Switch>
   </Router>
   );
 }
 
 ReactDOM.render(
   <React.StrictMode>
-    <ReferenceContextProvider>
-      <Index />
-    </ReferenceContextProvider>
+    <Theme>
+      <ReferenceContextProvider>
+        <Index />
+      </ReferenceContextProvider>
+    </Theme>
   </React.StrictMode>,
   document.getElementById('root')
 );
