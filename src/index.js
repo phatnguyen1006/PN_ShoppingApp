@@ -17,7 +17,7 @@ import Admin from './components/Admin';
 // Private Route:
 import PrivateRoute from './private/PrivateRoute';
 // Theme
-import ThemeProvider from './context/Theme'
+import ThemeContextProvider from './context/Theme';
 
 import BarThemeProvider from './context/BarTheme';
 // Redirect Context:
@@ -91,11 +91,11 @@ const Index = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Theme>
+    <ThemeContextProvider>
       <ReferenceContextProvider>
         <Index />
       </ReferenceContextProvider>
-    </Theme>
+    </ThemeContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

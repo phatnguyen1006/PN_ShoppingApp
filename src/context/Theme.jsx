@@ -1,9 +1,9 @@
 import React, { createContext, useState } from 'react';
 
 // create Prodiver
-export const ThemeProvider = createContext();
+export const ThemeContext = createContext();
 
-const Theme = ({children}) => {
+const ThemeContextProvider = ({children}) => {
     const [theme, setTheme] = useState({
         background: "rgb(69, 64, 64)",
         color: "rgb(216, 212, 212)"
@@ -17,8 +17,10 @@ const Theme = ({children}) => {
     }
 
     return (
-        <ThemeProvider.Theme value={{ theme, changeTheme }}>
+        <ThemeContext.Provider value={{ theme, changeTheme }}>
             {children}
-        </ThemeProvider.Theme>
+        </ThemeContext.Provider>
     );
 }
+
+export default ThemeContextProvider;
